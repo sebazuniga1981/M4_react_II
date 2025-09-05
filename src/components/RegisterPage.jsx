@@ -55,7 +55,7 @@ const RegisterPage = () => {
     form.email && form.password.length >= 6 && form.confirm === form.password;
 
   return (
-    <div className="container" style={{ maxWidth: 420, marginTop: 24 }}>
+    <div className="container" style={{ maxWidth: 420, marginTop: 24, marginBottom: 24 }}>
       <h2 className="mb-3">Crear una cuenta</h2>
 
       {status && (
@@ -110,7 +110,7 @@ const RegisterPage = () => {
             className={`form-control ${errors.confirm ? "is-invalid" : ""}`}
             value={form.confirm}
             onChange={handleChange}
-            placeholder="Repite tu contraseña"
+            placeholder="Confirma tu contraseña"
           />
           {errors.confirm && (
             <div className="invalid-feedback">{errors.confirm}</div>
@@ -122,7 +122,7 @@ const RegisterPage = () => {
           className="btn btn-dark w-100"
           disabled={!canSubmit}
         >
-          Entrar
+          A pedir Pizza
         </button>
       </form>
     </div>

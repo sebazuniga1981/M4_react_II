@@ -1,15 +1,18 @@
 import { useState } from "react";
-
+// estados y lógica del formulario//
 const LoginPage = () => {
   const [form, setForm] = useState({ email: "", password: "" });
   const [errors, setErrors] = useState({});
   const [status, setStatus] = useState(null);
-
+  // se usa para cuando el usuario escribe  en los campos del formulario y se llama
+  // a la función handleChange, se actualiza el estado form con los valores actuales
+  //  y el valor del campo que se ha cambiado.
   const handleChange = (e) => {
     const { name, value } = e.target;
     setForm((prev) => ({ ...prev, [name]: value }));
   };
-
+// este  codigo sirve para  validar los campos del formulario de inicio de sesión,
+// si el mail es valido y si el password conteien las cantidades de caracteres
   const validate = () => {
     const errs = {};
 
@@ -27,6 +30,8 @@ const LoginPage = () => {
 
     return errs;
   };
+  //  evita que se carge la pagina, llama a validate para revisar los datos,
+  // si no hay errores muestra  login exitoso, si hay errores muestra revisa los campos
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -34,17 +39,19 @@ const LoginPage = () => {
     if (Object.keys(v).length === 0) {
       setErrors({});
       setStatus({ type: "success", text: "¡Login exitoso!" });
-      // setForm({ email: "", password: "" }); // opcional limpiar
     } else {
       setErrors(v);
       setStatus({ type: "error", text: "Revisa los campos marcados." });
     }
   };
-
+// boton enviar  si el usuario escribio bien ambos datos solicitados, se habilita el boton  "entrar"
   const canSubmit = form.email && form.password.length >= 6;
 
   return (
-    <div className="container" style={{ maxWidth: 420, marginTop: 24 }}>
+    <div
+      className="container"
+      style={{ maxWidth: 420, marginTop: 24, marginBottom: 24 }}
+    >
       <h2 className="mb-3">Iniciar sesión</h2>
 
       {status && (
@@ -69,7 +76,9 @@ const LoginPage = () => {
             onChange={handleChange}
             placeholder="tu@correo.com"
           />
-          {errors.email && <div className="invalid-feedback">{errors.email}</div>}
+          {errors.email && (
+            <div className="invalid-feedback">{errors.email}</div>
+          )}
         </div>
 
         <div className="mb-4">
@@ -87,8 +96,12 @@ const LoginPage = () => {
           )}
         </div>
 
-        <button type="submit" className="btn btn-dark w-100" disabled={!canSubmit}>
-          Entrar
+        <button
+          type="submit"
+          className="btn btn-dark w-100"
+          disabled={!canSubmit}
+        >
+          A pedir pizza
         </button>
       </form>
     </div>
